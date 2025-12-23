@@ -1,0 +1,11 @@
+{
+	"title": "COLUMNS must only reference added dataset",
+	"input": {
+		"WHERE": { "GT": { "sections_avg": 90 } },
+		"OPTIONS": {
+			"COLUMNS": ["sections_avg", "notadded_field"]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

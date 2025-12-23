@@ -1,0 +1,13 @@
+{
+	"title": "Query with empty COLUMNS array",
+	"input": {
+		"WHERE": {
+			"GT": { "sections_avg": 90 }
+		},
+		"OPTIONS": {
+			"COLUMNS": []
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

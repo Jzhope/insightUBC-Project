@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>InsightUBC - Section Insights</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>InsightUBC - Section Insights</h1>
+				<p>Explore and query UBC course section data</p>
+			</header>
+
+			<nav class="tabs">
+				<button class="tab-button active" data-tab="datasets">Datasets</button>
+				<button class="tab-button" data-tab="query">Query</button>
+				<button class="tab-button" data-tab="insights">Insights</button>
+			</nav>
+
+			<!-- Datasets Tab -->
+			<div id="datasets-tab" class="tab-content active">
+				<section class="section">
+					<h2>Manage Datasets</h2>
+
+					<div class="form-group">
+						<h3>Add Dataset</h3>
+						<label for="dataset-id">Dataset ID:</label>
+						<input type="text" id="dataset-id" placeholder="e.g., ubc" required />
+
+						<label for="dataset-kind">Dataset Kind:</label>
+						<select id="dataset-kind">
+							<option value="sections">Sections</option>
+							<option value="rooms">Rooms</option>
+						</select>
+
+						<label for="dataset-file">Dataset File (ZIP):</label>
+						<input type="file" id="dataset-file" accept=".zip" required />
+
+						<button id="add-dataset-btn" class="btn btn-primary">Add Dataset</button>
+						<div id="add-dataset-message" class="message"></div>
+					</div>
+
+					<div class="form-group">
+						<h3>Remove Dataset</h3>
+						<label for="remove-dataset-id">Dataset ID:</label>
+						<input type="text" id="remove-dataset-id" placeholder="e.g., ubc" required />
+						<button id="remove-dataset-btn" class="btn btn-danger">Remove Dataset</button>
+						<div id="remove-dataset-message" class="message"></div>
+					</div>
+
+					<div class="form-group">
+						<h3>List All Datasets</h3>
+						<button id="list-datasets-btn" class="btn btn-secondary">Refresh List</button>
+						<div id="datasets-list" class="datasets-list"></div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Query Tab -->
+			<div id="query-tab" class="tab-content">
+				<section class="section">
+					<h2>Query Sections</h2>
+
+					<div class="form-group">
+						<label for="query-input">Query JSON:</label>
+						<textarea
+							id="query-input"
+							rows="15"
+							placeholder='{"WHERE": {}, "OPTIONS": {"COLUMNS": ["sections_dept", "sections_avg"]}}'
+						></textarea>
+						<button id="execute-query-btn" class="btn btn-primary">Execute Query</button>
+						<div id="query-message" class="message"></div>
+					</div>
+
+					<div class="form-group">
+						<h3>Query Results</h3>
+						<div id="query-results" class="query-results"></div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Insights Tab -->
+			<div id="insights-tab" class="tab-content">
+				<section class="section">
+					<h2>Dataset Insights</h2>
+
+					<div class="form-group">
+						<h3>Select Dataset</h3>
+						<label for="insights-dataset-select">Sections dataset:</label>
+						<select id="insights-dataset-select">
+							<option value="">Select a sections dataset...</option>
+						</select>
+						<div id="insights-message" class="message"></div>
+					</div>
+
+					<!-- Custom Query Builder -->
+					<div class="form-group custom-graph-builder">
+						<h3>Custom Graph Builder</h3>
+						<p style="color: #666; margin-bottom: 15px">
+							Build a custom graph by specifying filters and grouping options
+						</p>
+
+						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px">
+							<div>
+								<label for="custom-filter-field">Filter Field:</label>
+								<select id="custom-filter-field">
+									<option value="">None (no filter)</option>
+									<option value="avg">Average Grade</option>
+									<option value="year">Year</option>
+									<option value="dept">Department</option>
+								</select>
+							</div>
+							<div>
+								<label for="custom-filter-operator">Filter Operator:</label>
+								<select id="custom-filter-operator">
+									<option value="GT">Greater Than (&gt;)</option>
+									<option value="LT">Less Than (&lt;)</option>
+									<option value="EQ">Equal To (=)</option>
+								</select>
+							</div>
+						</div>
+
+						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px">
+							<div>
+								<label for="custom-filter-value">Filter Value:</label>
+								<input type="text" id="custom-filter-value" placeholder="e.g., 90 or 'cpsc'" />
+							</div>
+							<div>
+								<label for="custom-group-by">Group By:</label>
+								<select id="custom-group-by">
+									<option value="">None (no grouping)</option>
+									<option value="dept">Department</option>
+									<option value="year">Year</option>
+									<option value="id">Course ID</option>
+								</select>
+							</div>
+						</div>
+
+						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px">
+							<div>
+								<label for="custom-aggregate">Aggregate:</label>
+								<select id="custom-aggregate">
+									<option value="">None</option>
+									<option value="AVG">Average</option>
+									<option value="SUM">Sum</option>
+									<option value="COUNT">Count</option>
+									<option value="MAX">Maximum</option>
+									<option value="MIN">Minimum</option>
+								</select>
+							</div>
+							<div>
+								<label for="custom-chart-type">Chart Type:</label>
+								<select id="custom-chart-type">
+									<option value="bar">Bar Chart</option>
+									<option value="line">Line Chart</option>
+									<option value="pie">Pie Chart</option>
+								</select>
+							</div>
+						</div>
+
+						<button id="generate-custom-graph-btn" class="btn btn-primary">Generate Graph</button>
+						<div id="custom-graph-message" class="message"></div>
+					</div>
+
+					<div class="form-group" id="custom-graph-container" style="display: none">
+						<h3 id="custom-graph-title">Custom Graph</h3>
+						<div class="chart-container">
+							<canvas id="custom-graph-chart"></canvas>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h3>Grade Distribution (Histogram)</h3>
+						<div class="chart-container">
+							<canvas id="grade-distribution-chart"></canvas>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h3>Average Grade by Department</h3>
+						<div class="chart-container">
+							<canvas id="avg-by-dept-chart"></canvas>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h3>Average Grade per Year</h3>
+						<div class="chart-container">
+							<canvas id="avg-by-year-chart"></canvas>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

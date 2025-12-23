@@ -1,0 +1,13 @@
+{
+	"title": "Query with multiple dataset references",
+	"input": {
+		"WHERE": {
+			"AND": [{ "GT": { "ubc_avg": 90 } }, { "IS": { "other_id_dept": "cpsc" } }]
+		},
+		"OPTIONS": {
+			"COLUMNS": ["ubc_avg", "other_id_dept"]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

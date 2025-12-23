@@ -1,0 +1,321 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	min-height: 100vh;
+	padding: 20px;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+}
+
+header {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 30px;
+	text-align: center;
+}
+
+header h1 {
+	font-size: 2.5em;
+	margin-bottom: 10px;
+}
+
+header p {
+	font-size: 1.1em;
+	opacity: 0.9;
+}
+
+.tabs {
+	display: flex;
+	background: #f5f5f5;
+	border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+	flex: 1;
+	padding: 15px 20px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: 500;
+	transition: all 0.3s;
+	border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+	background: #e8e8e8;
+}
+
+.tab-button.active {
+	background: white;
+	border-bottom-color: #667eea;
+	color: #667eea;
+}
+
+.tab-content {
+	display: none;
+	padding: 30px;
+}
+
+.tab-content.active {
+	display: block;
+}
+
+.section {
+	margin-bottom: 30px;
+}
+
+.section h2 {
+	color: #333;
+	margin-bottom: 20px;
+	font-size: 1.8em;
+}
+
+.section h3 {
+	color: #555;
+	margin: 20px 0 10px 0;
+	font-size: 1.3em;
+}
+
+.form-group {
+	margin-bottom: 30px;
+	padding: 20px;
+	background: #f9f9f9;
+	border-radius: 8px;
+	border: 1px solid #e0e0e0;
+}
+
+label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 500;
+	color: #555;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+textarea {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 15px;
+	border: 2px solid #ddd;
+	border-radius: 6px;
+	font-size: 1em;
+	font-family: inherit;
+	transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	border-color: #667eea;
+}
+
+textarea {
+	font-family: "Courier New", monospace;
+	resize: vertical;
+}
+
+.btn {
+	padding: 12px 24px;
+	border: none;
+	border-radius: 6px;
+	font-size: 1em;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.btn-primary {
+	background: #667eea;
+	color: white;
+}
+
+.btn-primary:hover {
+	background: #5568d3;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-danger {
+	background: #e74c3c;
+	color: white;
+}
+
+.btn-danger:hover {
+	background: #c0392b;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.btn-secondary {
+	background: #95a5a6;
+	color: white;
+}
+
+.btn-secondary:hover {
+	background: #7f8c8d;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(149, 165, 166, 0.4);
+}
+
+.message {
+	margin-top: 15px;
+	padding: 12px;
+	border-radius: 6px;
+	display: none;
+}
+
+.message.success {
+	background: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+	display: block;
+}
+
+.message.error {
+	background: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+	display: block;
+}
+
+.datasets-list {
+	margin-top: 20px;
+}
+
+.dataset-item {
+	padding: 15px;
+	margin-bottom: 10px;
+	background: white;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dataset-item:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dataset-info {
+	flex: 1;
+}
+
+.dataset-id {
+	font-weight: 600;
+	color: #333;
+	font-size: 1.1em;
+}
+
+.dataset-details {
+	margin-top: 5px;
+	color: #666;
+	font-size: 0.9em;
+}
+
+.query-results {
+	margin-top: 20px;
+	max-height: 600px;
+	overflow-y: auto;
+}
+
+.results-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: white;
+	border-radius: 6px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.results-table th {
+	background: #667eea;
+	color: white;
+	padding: 12px;
+	text-align: left;
+	font-weight: 600;
+	position: sticky;
+	top: 0;
+}
+
+.results-table td {
+	padding: 10px 12px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.results-table tr:hover {
+	background: #f5f5f5;
+}
+
+.results-table tr:last-child td {
+	border-bottom: none;
+}
+
+.no-results {
+	padding: 30px;
+	text-align: center;
+	color: #666;
+	font-style: italic;
+}
+
+.loading {
+	text-align: center;
+	padding: 20px;
+	color: #667eea;
+}
+
+/* Contain charts so they don't take over the page */
+.chart-container {
+	position: relative;
+	width: 100%;
+	max-width: 900px;
+	height: 280px; /* tweak this if you want taller/shorter charts */
+	margin: 15px 0;
+}
+
+/* Make canvases fill their container instead of growing the page */
+.chart-container canvas {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+/* Make all insight graphs static (no scrolling) */
+#insights-tab .form-group {
+	max-height: none;
+	overflow: visible;
+}
+
+/* Make filter value input bigger */
+#custom-filter-value {
+	min-width: 250px;
+	font-size: 1.05em;
+	padding: 14px !important;
+}
+
+/* Custom graph builder styles */
+#custom-graph-container {
+	max-height: none !important;
+}
+
+#custom-graph-container .form-group {
+	max-height: none !important;
+}

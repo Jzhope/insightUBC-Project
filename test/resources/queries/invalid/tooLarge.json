@@ -1,0 +1,11 @@
+{
+	"title": "Query returns too many results",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": ["sections_uuid"]
+		}
+	},
+	"errorExpected": true,
+	"expected": "ResultTooLargeError"
+}

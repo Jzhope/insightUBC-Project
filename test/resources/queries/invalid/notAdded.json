@@ -1,0 +1,13 @@
+{
+	"title": "Query references dataset not added",
+	"input": {
+		"WHERE": {
+			"GT": { "ghost_avg": 90 }
+		},
+		"OPTIONS": {
+			"COLUMNS": ["ghost_dept", "ghost_avg"]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
